@@ -1,6 +1,7 @@
 // src/controllers/productController.js
 const axios = require("axios"); // Importar axios
 const Product = require("../models/productModel");
+require("dotenv").config();  // Para acceder a las variables de entorno
 
 const createProduct = async (req, res) => {
   try {
@@ -28,7 +29,7 @@ const createProduct = async (req, res) => {
       name: newProduct.name,
       stock: newProduct.stock,
       createdAt: newProduct.createdAt, // Fecha de creación
-      emailTo: "cipallo@uce.edu.ec" // Aquí puedes usar un correo fijo por ahora
+      emailTo: process.env.NOTIFICATION_EMAIL
     });
 
     return res.status(201).json({
